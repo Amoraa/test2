@@ -72,7 +72,7 @@ app.get("/highGPA", function(req, res){
 
 app.get('*',function(req,res)
 {
-    res.status(404).send("<h1 style='background-color: violet'>Error 404: page not found.</h1>");
+    res.status(404).send("<h1>Error 404: page not found.</h1>");
 })
 
 moduleA.init().then(function()
