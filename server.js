@@ -1,9 +1,21 @@
+/*************************************************************************
+* BTI325– Assignment 2
+* I declare that this assignment is my own work in accordance with Seneca Academic 
+Policy. No part * of this assignment has been copied manually or electronically from any 
+other source 
+* (including 3rd party web sites) or distributed to other students.
+* 
+* Name: _______Tatiana Kashcheeva_____________________ Student ID: ______148366206________ Date: ___18th October__2022__
+*
+* Your app’s URL (from Cyclic) : ___________ https://sparkling-hare-tunic.cyclic.app_________________________________
+*
+*************************************************************************/ 
+
 var express = require("express"); 
 
 var app = express();
 var moduleA = require("./test2_moduleA");
 
-//var path = require("path"); 
 
 var HTTP_PORT = process.env.PORT || 8080;  
 
