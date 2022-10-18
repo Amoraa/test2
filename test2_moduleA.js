@@ -27,14 +27,23 @@ module.exports.getBSD=function()
 {
     return new Promise(function(resolve, reject)
     {
-        
-       if (students.length==0)
+        var bsd=[]
+        var n=0
+        for (let student of students)
+        {
+            if (student.program=="BSD")
+            {
+                bsd[n]=student;
+                n++;
+            }
+        }
+       if (bsd.length==0)
        {
         reject("no results returned")
        }
        else
        {
-            resolve(students)
+            resolve(bsd)
        }
             
     })
