@@ -12,14 +12,15 @@ other source
 *************************************************************************/ 
 
 var express = require("express"); 
-
+const exphbs = require('express-handlebars');
 var app = express();
 var moduleA = require("./test2_moduleA");
 
 
 var HTTP_PORT = process.env.PORT || 8080;  
 
-
+app.engine('.hbs', exphbs.engine({ extname: '.hbs', default: "main"}));
+app.set('view engine', '.hbs');
 
 function onHttpStart(){
     console.log("Express http server listening on: " + HTTP_PORT);
@@ -31,16 +32,17 @@ app.get("/BSD", function(req, res){
     moduleA.getBSD().then(function(students)
     {
         
-        res.json(students);
+        res.render("students",{data:students})
     })
     .catch(function(err)
     {
-        res.json(err);
+        res.render("students",{message:"There are no BSD students"})
     })
+    
 });
 
 app.get("/", function(req, res){
-    let resText = "<h2>Declaration</h2>";
+    /*let resText = "<h2>Declaration</h2>";
     resText += `<p>I acknowledge the College's academic integrity policy - and my own integrity - remain in effect<br>
     whether my work is done remotely or onsite. Any test or assignment is an act of trust between<br>
     me and my instructor and especially with my classmates... even when no one is whatching. I<br>
@@ -49,19 +51,25 @@ app.get("/", function(req, res){
     resText += "Student Number: <mark>148366206</mark><br>"
     resText += "<br><a href = '/BSD'> Click to visit BSD students </a> <br>";
     resText += "<br><a href = '/highGPA'> Click to see who has the highest GPA </a> <br>";
-    res.send(resText);
+    res.send(resText);*/
+    res.render("home",{})
+});
+
+app.get("/allStudents", function(req, res){
+    moduleA.allStudents().then(function(st)
+    {
+       res.render("students",{data:st})
+    })
+    .catch(function(err)
+    {
+        console.log(err)
+    })
 });
 
 app.get("/highGPA", function(req, res){
     moduleA.highGPA().then(function(st)
     {
-        let resText = "<h2>Highest GPA:</h2>";
-    resText += "<p>Student ID: "+ st.studId+"</p>"; 
-    resText += "<p>Name: "+st.name+"</p>";
-    resText += "<p>Program: "+st.program+"</p>"
-    resText += "<p>GPA: " +st.gpa+"</p>";
-    
-    res.send(resText);
+       res.render("student",{data:st})
     })
     .catch(function(err)
     {

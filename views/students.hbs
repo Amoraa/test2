@@ -1,0 +1,24 @@
+<h2>Student List</h2>
+<table border='1'>
+    <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Program</th>
+        <th>GPA</th>
+    </tr>
+    {{#each data}}
+                <tr>
+                  <td>{{studId}}</td>
+                 <td>{{name}}</td>
+                 <td>{{program}}</td>
+                 <td>{{gpa}}</td>
+                  
+                </tr>
+                
+                {{else}}
+                <div class="col-md-12 text-center">
+                <strong>{{message}}</strong>
+                </div>
+            {{/each}}
+        
+</table>

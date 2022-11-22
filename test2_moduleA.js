@@ -49,6 +49,24 @@ module.exports.getBSD=function()
     })
 }
     
+module.exports.allStudents=function()
+{
+    return new Promise(function(resolve, reject)
+    {
+        
+        if (students.length>0)
+        {
+            resolve(students)
+        }
+        else{
+            reject("no results returned")
+        }
+            
+    })
+
+}
+
+
 module.exports.highGPA=function()
 {
     var gpa=0;
